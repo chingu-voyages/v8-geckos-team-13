@@ -1,0 +1,45 @@
+{
+  "name": "v8-geckos-team-13",
+  "version": "1.0.0",
+  "description": "A Flipboard Clone project for Geckos Team 13 in Chingu (Voyage 8)",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-voyages/v8-geckos-team-13.git"
+  },
+  "keywords": [
+    "chingu-voyage-8",
+    "flipboard-clone",
+    "news-api",
+    "Chingu",
+    "react-app"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chingu-voyages/v8-geckos-team-13/issues"
+  },
+  "homepage": "https://github.com/chingu-voyages/v8-geckos-team-13#readme",
+  "dependencies": {
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-scripts": "2.1.8",
+    "bootstrap": "^4.3.1",
+    "react-bootstrap": "^1.0.0-beta.6"
+  }
+}
