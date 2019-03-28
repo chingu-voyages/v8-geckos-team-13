@@ -5,7 +5,7 @@
   max-width: 100%;
   color: rgb(111, 111, 111);
   border-bottom: 0.05rem solid rgb(111, 111, 111);
-  padding: 0.5rem 0rem;
+  padding: 1rem 0rem;
 }
 
 .top-bar * {
@@ -14,7 +14,6 @@
 
 .top-bar img {
   padding: 0.5rem 0.5rem;
-  align-self: flex-start;
 }
 
 .top-bar ul {
@@ -45,12 +44,9 @@
 
 @media only screen and (max-width: 600px) {
   .top-bar {
-    font-size: 0.8rem;
+    flex-direction: column;
   }
   .top-bar ul {
     flex-direction: column;
-  }
-  .top-bar form {
-    align-self: flex-start;
   }
 }
