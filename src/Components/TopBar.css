@@ -38,8 +38,19 @@
   font-stretch: normal;
   line-height: 3.81;
   letter-spacing: 0.2px;
-  color: #999999;
   padding: 0rem 1rem;
+}
+
+.btn-link {
+  color: #999999;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btn-link:hover, .btn-link:focus {
+  color: #2ec4b6;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .top-bar form {
