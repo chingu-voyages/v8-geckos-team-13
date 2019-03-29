@@ -1,0 +1,18 @@
+.main-header {
+  margin: 88px auto 40px;
+}
+  .main-header > * {
+    margin-bottom: 0;
+    color: #000000;
+    font-weight: bold;
+  }
+
+  .main-header__title {
+    font-family: 'Merriweather', sans-serif;
+    font-size: 3.75rem;
+  }
+
+  .main-header__text {
+    font-family: 'Avenir Next Demi', sans-serif;
+    font-size: 0.875rem;
+  }

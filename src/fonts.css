@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "Merriweather";
+  src:  url('./fonts/Merriweather/Merriweather-Bold.woff2') format('woff2'),
+        url('./fonts/Merriweather/Merriweather-Bold.woff')  format('woff'),
+        url('./fonts/Merriweather/Merriweather-Bold.ttf')   format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Next';
+  src:  url('./fonts/Avenir/AvenirNext-Medium.woff2') format('woff2'),
+        url('./fonts/Avenir/AvenirNext-Medium.woff')  format('woff'),
+        url('./fonts/Avenir/AvenirNext-Medium.ttf')   format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Next Condensed';
+  src:  url('./fonts/Avenir/AvenirNextCondensed-Medium.woff2') format('woff2'),
+        url('./fonts/Avenir/AvenirNextCondensed-Medium.woff')  format('woff'),
+        url('./fonts/Avenir/AvenirNextCondensed-Medium.ttf')   format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Next Demi';
+  src:  url('./fonts/Avenir/AvenirNext-DemiBold.woff2') format('woff2'),
+        url('./fonts/Avenir/AvenirNext-DemiBold.woff')  format('woff'),
+        url('./fonts/Avenir/AvenirNext-DemiBold.ttf')   format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
