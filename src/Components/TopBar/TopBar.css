@@ -1,0 +1,23 @@
+#basic-navbar-nav .menu-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#basic-navbar-nav a {
+  padding: 1rem;
+}
+
+.form-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-search input {
+  width: 70%;
+}
+
+.form-search * {
+  display: flex;
+}
