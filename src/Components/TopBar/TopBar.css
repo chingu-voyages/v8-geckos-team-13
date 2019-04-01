@@ -14,10 +14,17 @@
   align-items: center;
 }
 
-.form-search input {
-  width: 70%;
+.form-search, .logo-width {
+  width: 200px;
 }
 
 .form-search * {
   display: flex;
+  align-self: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .form-search {
+    margin: auto;
+  }
 }
