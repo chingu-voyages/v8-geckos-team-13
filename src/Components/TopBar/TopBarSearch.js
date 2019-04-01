@@ -6,7 +6,7 @@ export default class extends Component {
         return(
           <form>
             <input type = "text" />
-            <button type ="button" className = "btn btn-link">
+            <button type ="submit" className = "btn btn-link">
               <img src={search} alt="search icon"/>
             </button>
           </form>
