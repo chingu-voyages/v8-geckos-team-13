@@ -10,13 +10,15 @@ export default class extends Component {
       const menu = ['FEATURED', 'TECHNOLOGY', 'NEWS', 'ENTERTAINMENT', 'DESIGN', 'HEALTH'];
         return(
           <Navbar className = "d-flex" expand = "md" bg="light" fixed="sticky">
-            <Navbar.Brand className = "logo-width" href="#home">
+            <div className = "logo-width">
+            <Navbar.Brand href="/">
               <img
                 src={logo}
                 className="d-inline-block align-top"
                 alt="Team logo"
               />
             </Navbar.Brand>
+            </div>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
             <Menu menu = {menu} />

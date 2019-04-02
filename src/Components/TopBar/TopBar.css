@@ -8,6 +8,20 @@
   padding: 1rem;
 }
 
+#basic-navbar-nav a:hover {
+  color: #2ec4b6;
+  font-weight: 600;
+}
+
+.search-button {
+  padding: 0.4rem;
+}
+
+.search-button:hover {
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+
 .form-search {
   display: flex;
   justify-content: center;
@@ -16,6 +30,18 @@
 
 .form-search, .logo-width {
   width: 200px;
+}
+
+#search-input:focus {
+  border-color: rgb(195, 195, 195);
+  box-shadow: 0 0 0 0.1rem rgb(195, 195, 195);
+}
+
+.logo-width {
+  height: 56px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .form-search * {
