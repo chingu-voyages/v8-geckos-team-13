@@ -6,8 +6,8 @@ export default class extends Component {
     render(){
         return(
             <Form className = "form-search">
-              <FormControl type="text" placeholder="Search" className="mr-sm-2" id = "search-input"   />
-              <Button className = "search-button" variant="light"><img src = {search} alt = "Search" /></Button>
+              <FormControl type="text" placeholder="Search" id = "search-input"   />
+              <Button variant="link"><img src = {search} alt = "Search" /></Button>
             </Form>
         )
     }
