@@ -9,8 +9,8 @@ export default class extends Component {
     render(){
       const menu = ['FEATURED', 'TECHNOLOGY', 'NEWS', 'ENTERTAINMENT', 'DESIGN', 'HEALTH'];
         return(
-          <Navbar className = "d-flex" expand = "md" bg="light" fixed="sticky">
-            <div className = "logo-width">
+          <Navbar id = "top-bar" expand = "md" fixed="sticky">
+            <div className = "logo">
             <Navbar.Brand href="/">
               <img
                 src={logo}
@@ -19,7 +19,7 @@ export default class extends Component {
               />
             </Navbar.Brand>
             </div>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Toggle className = "toggle-top" aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
             <Menu menu = {menu} />
             <Search />
