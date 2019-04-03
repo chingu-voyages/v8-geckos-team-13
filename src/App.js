@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import TopBar from './Components/TopBar/TopBar';
 import MainHeader from './Components/MainHeader';
-import ArticleLarge from './Components/ArticleLarge';
+import ArticleLarge from './Components/ArticleLarge/ArticleLarge';
 import ArticleGrid from './Components/ArticleGrid';
 
 //u use 'default' keyword only when ur exporting ONE thing, and u don't need to name it, because 'default' allows you to name ur modules freely at place of ur import
