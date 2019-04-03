@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Nav } from 'react-bootstrap';
+import { Nav, Button } from 'react-bootstrap';
 
 export default class extends Component {
     render(){
       const MenuList = (list) => list.map( (x, i) =>
-          <Nav.Link key = {i} href={x}>{x}</Nav.Link>
+          <Button variant = "link" key = {i}>{x}</Button>
       );
         return(
             <Nav className = "mr-auto ml-auto flex-wrap menu-bar">
