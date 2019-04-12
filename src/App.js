@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import TopBar from './Components/TopBar/TopBar';
-import MainHeader from './Components/MainHeader';
+import MainHeader from './Components/MainHeader/MainHeader';
 import ArticleLarge from './Components/ArticleLarge/ArticleLarge';
 import ArticleGrid from './Components/ArticleGrid/ArticleGrid';
 
