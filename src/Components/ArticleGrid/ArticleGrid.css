@@ -52,3 +52,6 @@
 .card__image_icons--icon-heart, .card__image_icons--icon-letter {  
     background-color: rgba(255, 255, 255, 0.5);
 }
+.loading {
+    font-size: 2em;
+}
