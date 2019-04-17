@@ -1,7 +1,7 @@
 //Georgi
 
 import React, {Component} from 'react';
-import {Card, Container, Row, Col} from 'react-bootstrap';
+import {Card, Container, Row} from 'react-bootstrap';
 import {FaRegComments, FaAngleDown, FaHeart, FaPlus } from 'react-icons/fa';
 import { MdLocalPostOffice } from "react-icons/md";
 import './ArticleGrid.css';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Nav, Button } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 export default class extends Component {
