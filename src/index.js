@@ -12,13 +12,15 @@ const menu = ['featured', 'technology', 'news', 'entertainment', 'design', 'heal
 const options = menu.slice(1).map(route => {
   return <Route
     path = {`/${route}`}
+    key = {route}
     render={(props) => <App {...props} category = {route} menu = {menu} />}
   />
 })
 const routing = (
   <Router>
     <div>
-      <Route exact path = {/\/featured|\//} render={(props) => <App {...props} category = "top" menu = {menu}/>} />
+      <Route exact path = "/" render={(props) => <App {...props} category = "top" menu = {menu}/>} />
+      <Route path = "/featured" render={(props) => <App {...props} category = "top" menu = {menu}/>} />
       {options}
     </div>
   </Router>
