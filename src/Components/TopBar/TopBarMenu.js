@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import TopBarItem from './TopBarItem';
+import { Nav, Button } from 'react-bootstrap';
 
 export default class extends Component {
     render(){
-      const menuList = (list) => list.map((item, index) => {
-        return <TopBarItem key = {index} item = {item}/>
-      });
-      return(
-        <ul>
-          {menuList(this.props.menu)}
-        </ul>
-      )
+      const MenuList = (list) => list.map( (x, i) =>
+          <Button variant = "link" key = {i}>{x}</Button>
+      );
+        return(
+            <Nav className = "mr-auto ml-auto flex-wrap menu-bar">
+                  {MenuList(this.props.menu)}
+            </Nav>
+        )
     }
 }

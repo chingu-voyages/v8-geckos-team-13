@@ -33,12 +33,13 @@
 }
 .card__image_icons {
     position: absolute;
-    left: 230px;
     top: 10px;
     font-size: 1.6em;
-    color: #2ec4b6;  
+    color: #2ec4b6;
 }
 .card__image_icons--icon  {
+    position: relative;
+    left: 230px;
     border: 1px solid #2ec4b6;
     padding: 5px;
     border-radius: 50%;
@@ -49,7 +50,7 @@
     color: #fff;
     background-color: #2ec4b6;
 }
-.card__image_icons--icon-heart, .card__image_icons--icon-letter {  
+.card__image_icons--icon-heart, .card__image_icons--icon-letter {
     background-color: rgba(255, 255, 255, 0.5);
 }
 .loading {
