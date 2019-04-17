@@ -9,16 +9,16 @@ import App from './App';
 
 
 const menu = ['featured', 'technology', 'news', 'entertainment', 'design', 'health'];
-const options = menu.map(item => `/${item}`).map(route => {
+const options = menu.slice(1).map(route => {
   return <Route
-    path = {route}
+    path = {`/${route}`}
     render={(props) => <App {...props} category = {route} menu = {menu} />}
   />
 })
 const routing = (
   <Router>
     <div>
-      <Route exact path = "/" render={(props) => <App {...props} category = "technology" menu = {menu}/>} />
+      <Route exact path = {/\/featured|\//} render={(props) => <App {...props} category = "top" menu = {menu}/>} />
       {options}
     </div>
   </Router>
