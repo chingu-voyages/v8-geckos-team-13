@@ -51,4 +51,7 @@
   .menu-bar {
     padding: 1rem;
   }
+  .logo {
+    width: 56px;
+  }
 }
