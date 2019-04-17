@@ -5,7 +5,7 @@ import TopBar from './Components/TopBar/TopBar';
 import MainHeader from './Components/MainHeader/MainHeader';
 import ArticleLarge from './Components/ArticleLarge/ArticleLarge';
 import ArticleGrid from './Components/ArticleGrid/ArticleGrid';
-import news from './utils/api';
+import {news, headlines} from './utils/api';
 
 
 //u use 'default' keyword only when ur exporting ONE thing, and u don't need to name it, because 'default' allows you to name ur modules freely at place of ur import
@@ -19,13 +19,23 @@ export default class extends Component {
 
 
   componentDidMount(){
-      news(this.props.category)//you can do this in a few ways, what you wanna control is the argument of the function, if its dinamycal u would need a helper function, but be carefull..i haven't had the time to do everytthing, but u should have enough to get you going
-          .then(response => { //the componentDidMount is Reacts (built in) lifecycle method, it runs after the render method.So when u change the state, the render method (and all dependencies) gets trigered automatocally..it reacts!!
-              this.setState({
-                  loaded: true,//i set the load for testing purposes, and left it for ur testing purposes ;)
-                  articles: response.articles
+      if (this.props.category === "top") {
+        headlines()
+        .then(response => {
+          this.setState({
+              loaded: true,
+              articles: response.articles
+        })
+      })
+    } else {
+        news(this.props.category)//you can do this in a few ways, what you wanna control is the argument of the function, if its dinamycal u would need a helper function, but be carefull..i haven't had the time to do everytthing, but u should have enough to get you going
+            .then(response => { //the componentDidMount is Reacts (built in) lifecycle method, it runs after the render method.So when u change the state, the render method (and all dependencies) gets trigered automatocally..it reacts!!
+                this.setState({
+                    loaded: true,//i set the load for testing purposes, and left it for ur testing purposes ;)
+                    articles: response.articles
+                });
               });
-          });
+      }
   }
   render() {
     const { loaded, articles } = this.state;
