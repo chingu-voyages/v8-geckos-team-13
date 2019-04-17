@@ -4,7 +4,7 @@ import {render} from 'react-dom';//i use destructuring whenever i can- if it con
 import 'bootstrap/dist/css/bootstrap.css';
 import './fonts.css';
 import './index.css';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 
 
