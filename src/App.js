@@ -5,7 +5,6 @@ import TopBar from './Components/TopBar/TopBar';
 import MainHeader from './Components/MainHeader/MainHeader';
 import ArticleLarge from './Components/ArticleLarge/ArticleLarge';
 import ArticleGrid from './Components/ArticleGrid/ArticleGrid';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import news from './utils/api';
 
 
@@ -20,7 +19,7 @@ export default class extends Component {
 
 
   componentDidMount(){
-      news('technology')//you can do this in a few ways, what you wanna control is the argument of the function, if its dinamycal u would need a helper function, but be carefull..i haven't had the time to do everytthing, but u should have enough to get you going
+      news(this.props.category)//you can do this in a few ways, what you wanna control is the argument of the function, if its dinamycal u would need a helper function, but be carefull..i haven't had the time to do everytthing, but u should have enough to get you going
           .then(response => { //the componentDidMount is Reacts (built in) lifecycle method, it runs after the render method.So when u change the state, the render method (and all dependencies) gets trigered automatocally..it reacts!!
               this.setState({
                   loaded: true,//i set the load for testing purposes, and left it for ur testing purposes ;)
@@ -29,11 +28,10 @@ export default class extends Component {
           });
   }
   render() {
-    const menu = ['FEATURED', 'TECHNOLOGY', 'NEWS', 'ENTERTAINMENT', 'DESIGN', 'HEALTH'];
     const { loaded, articles } = this.state;
     return (
       <div className="App">
-          <TopBar menu = {menu} />
+          <TopBar menu = {this.props.menu} />
           <MainHeader />
           <ArticleLarge />
           <ArticleGrid articles = {articles} loaded = {loaded}/>
