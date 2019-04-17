@@ -33,12 +33,13 @@
 }
 .card__image_icons {
     position: absolute;
-    left: 230px;
     top: 10px;
     font-size: 1.6em;
     color: #2ec4b6;
 }
 .card__image_icons--icon  {
+    position: relative;
+    left: 230px;
     border: 1px solid #2ec4b6;
     padding: 5px;
     border-radius: 50%;
