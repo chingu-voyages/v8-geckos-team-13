@@ -9,7 +9,7 @@ export default class extends Component {
     render(){
       const menu = ['FEATURED', 'TECHNOLOGY', 'NEWS', 'ENTERTAINMENT', 'DESIGN', 'HEALTH'];
         return(
-          <Navbar id = "top-bar" expand = "md" fixed="sticky">
+          <Navbar id = "top-bar" expand = "lg" fixed="top">
             <div className = "logo">
             <Navbar.Brand href="/">
               <img
