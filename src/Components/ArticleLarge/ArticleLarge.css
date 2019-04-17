@@ -1,0 +1,43 @@
+.jumbotron {
+  border-radius: 0;
+  position: relative;
+  min-height: 300px;
+  background: url('article-large-example.jpg') center no-repeat #4a4a4a;
+  background-size: cover;
+}
+  .post {
+    position: absolute;
+    z-index: 50;
+    bottom: 30px;
+    left: 30px;
+    font-family: 'Avenir Next';
+    font-size: 0.75rem;
+    color: #FFFFFF;
+  }
+  .post__title {
+    font-family: 'Merriweather', sans-serif;
+    font-size: 2.25rem;
+    line-height: 1.14;
+    letter-spacing: 0.4px;
+  }
+  .post .btn-link {
+    color: #FFFFFF;
+    font-size: 0.75rem;
+  }
+
+  .overlay {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #4a4a4a;
+    opacity: 0.6;
+  }
+
+@media screen and (min-width: 992px) {
+  .jumbotron {
+    height: 380px;
+  }
+}
