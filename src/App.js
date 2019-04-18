@@ -19,7 +19,7 @@ export default class extends Component {
 
 
   componentDidMount(){
-      if (this.props.category === "top") {
+      if (this.props.category === "featured") {
         headlines()
         .then(response => {
           this.setState({
@@ -30,6 +30,7 @@ export default class extends Component {
     } else {
         news(this.props.category)//you can do this in a few ways, what you wanna control is the argument of the function, if its dinamycal u would need a helper function, but be carefull..i haven't had the time to do everytthing, but u should have enough to get you going
             .then(response => { //the componentDidMount is Reacts (built in) lifecycle method, it runs after the render method.So when u change the state, the render method (and all dependencies) gets trigered automatocally..it reacts!!
+                console.log(response.articles);
                 this.setState({
                     loaded: true,//i set the load for testing purposes, and left it for ur testing purposes ;)
                     articles: response.articles
@@ -42,9 +43,9 @@ export default class extends Component {
     return (
       <div className="App">
           <TopBar menu = {this.props.menu} />
-          <MainHeader />
+          <MainHeader category = {this.props.category}/>
           <ArticleLarge />
-          <ArticleGrid articles = {articles} loaded = {loaded}/>
+          <ArticleGrid articles = {articles} category = {this.props.category} loaded = {loaded}/>
       </div>
     );
   }
