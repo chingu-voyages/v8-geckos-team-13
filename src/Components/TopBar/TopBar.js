@@ -21,7 +21,7 @@ export default class extends Component {
             <Navbar.Toggle className = "toggle-top" aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
             <Menu menu = {this.props.menu} />
-            <Search />
+            <Search search = {this.props.search} />
             </Navbar.Collapse>
           </Navbar>
         )
