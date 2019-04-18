@@ -7,45 +7,46 @@ import ArticleLarge from './Components/ArticleLarge/ArticleLarge';
 import ArticleGrid from './Components/ArticleGrid/ArticleGrid';
 import {news, headlines} from './utils/api';
 
-
-//u use 'default' keyword only when ur exporting ONE thing, and u don't need to name it, because 'default' allows you to name ur modules freely at place of ur import
-//for example; i can say: import MyCoolModule from './App.js', regardles of the name in the App.js (when there is one) file xD (hope this is good explanation xD)
-//practice: in index.js file try to change import App from './App'; to ' import whateverYouWant from ./App.js'
 export default class extends Component {
   state = {
       articles : [],
-      loaded: false
+      loaded: false,
+      category: this.props.category
   }
 
+  searchNews = (input, category = this.state.category) => {
+    news(input)
+    .then(response => {
+        this.setState({
+            loaded: true,
+            articles: response.articles,
+            category
+        });
+    });
+  }
 
-  componentDidMount(){
-      if (this.props.category === "featured") {
+  componentDidMount() {
+      if (this.state.category === "featured") {
         headlines()
         .then(response => {
           this.setState({
               loaded: true,
-              articles: response.articles
+              articles: response.articles,
         })
       })
     } else {
-        news(this.props.category)//you can do this in a few ways, what you wanna control is the argument of the function, if its dinamycal u would need a helper function, but be carefull..i haven't had the time to do everytthing, but u should have enough to get you going
-            .then(response => { //the componentDidMount is Reacts (built in) lifecycle method, it runs after the render method.So when u change the state, the render method (and all dependencies) gets trigered automatocally..it reacts!!
-                console.log(response.articles);
-                this.setState({
-                    loaded: true,//i set the load for testing purposes, and left it for ur testing purposes ;)
-                    articles: response.articles
-                });
-              });
+        this.searchNews(this.state.category)
       }
-  }
+    }
+
   render() {
     const { loaded, articles } = this.state;
     return (
       <div className="App">
-          <TopBar menu = {this.props.menu} />
-          <MainHeader category = {this.props.category}/>
+          <TopBar menu = {this.props.menu} search = {this.searchNews} />
+          <MainHeader category = {this.state.category}/>
           <ArticleLarge />
-          <ArticleGrid articles = {articles} category = {this.props.category} loaded = {loaded}/>
+          <ArticleGrid articles = {articles} category = {this.state.category} loaded = {loaded}/>
       </div>
     );
   }
