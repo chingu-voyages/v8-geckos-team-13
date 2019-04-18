@@ -19,8 +19,8 @@ const options = menu.slice(1).map(route => {
 const routing = (
   <Router>
     <div>
-      <Route exact path = "/" render={(props) => <App {...props} category = "top" menu = {menu}/>} />
-      <Route path = "/featured" render={(props) => <App {...props} category = "top" menu = {menu}/>} />
+      <Route exact path = "(/|/featured)"
+      render={(props) => <App {...props} category = "featured" menu = {menu}/>} />
       {options}
     </div>
   </Router>
