@@ -7,7 +7,6 @@ import './TopBar.css';
 
 export default class extends Component {
     render(){
-      const menu = ['FEATURED', 'TECHNOLOGY', 'NEWS', 'ENTERTAINMENT', 'DESIGN', 'HEALTH'];
         return(
           <Navbar id = "top-bar" expand = "lg" fixed="top">
             <div className = "logo">
@@ -21,8 +20,8 @@ export default class extends Component {
             </div>
             <Navbar.Toggle className = "toggle-top" aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-            <Menu menu = {menu} />
-            <Search />
+            <Menu menu = {this.props.menu} />
+            <Search search = {this.props.search} />
             </Navbar.Collapse>
           </Navbar>
         )

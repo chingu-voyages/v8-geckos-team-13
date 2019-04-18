@@ -3,11 +3,12 @@
   justify-content: center;
 }
 
-#basic-navbar-nav button {
+#basic-navbar-nav a {
   color: #999999;
+  padding: 0.2rem 1rem;
 }
 
-#basic-navbar-nav button:focus, #basic-navbar-nav button:hover {
+#basic-navbar-nav .active, #basic-navbar-nav a:hover {
   color: #2ec4b6;
   font-weight: 600;
   text-decoration: none;

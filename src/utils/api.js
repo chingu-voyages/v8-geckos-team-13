@@ -1,14 +1,25 @@
 import NewsAPI from 'newsapi';
-const newsapi = new NewsAPI('caa53685d9e948c391382626e7bce93e');
+import { key } from '../config.js';
+const newsapi = new NewsAPI(key);
 
-export default (input) => {
+const sources = 'bbc-news,the-verge,the-new-york-times,techradar,reuters,bloomberg,associated-press,techcrunch,wired,cnn,fortune,the-economist,the-washington-post,the-wall-street-journal,time,associated-press';
 
- return newsapi.v2.everything({
-         q: input,
-         sources: 'bbc-news,the-verge',
-         domains: 'bbc.co.uk, techcrunch.com',
-         language: 'en',
-         sortBy: 'relevancy',
-         page: 2
-       })
+const news = (input) => { return newsapi.v2.everything({
+   q: input,
+   sources,
+   language: 'en',
+   sortBy: 'relevancy',
+   page: 2
+  })
+};
+
+const headlines = () => { return newsapi.v2.topHeadlines({
+  sources,
+  language: 'en',
+  })
+};
+
+export {
+  news,
+  headlines
 }

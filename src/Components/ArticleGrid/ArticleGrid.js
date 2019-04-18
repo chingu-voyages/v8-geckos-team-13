@@ -1,7 +1,7 @@
 //Georgi
 
 import React, {Component} from 'react';
-import {Card, Container, Row, Col} from 'react-bootstrap';
+import {Card, Container, Row} from 'react-bootstrap';
 import {FaRegComments, FaAngleDown, FaHeart, FaPlus } from 'react-icons/fa';
 import { MdLocalPostOffice } from "react-icons/md";
 import './ArticleGrid.css';
@@ -10,26 +10,9 @@ import './ArticleGrid.css';
 
 export default class extends Component {
 
-    state = {
-        articles : [],
-        loaded: false
-    }
-
-
-    componentDidMount(){
-        this.props.news('technology')//you can do this in a few ways, what you wanna control is the argument of the function, if its dinamycal u would need a helper function, but be carefull..i haven't had the time to do everytthing, but u should have enough to get you going
-            .then(response => { //the componentDidMount is Reacts (built in) lifecycle method, it runs after the render method.So when u change the state, the render method (and all dependencies) gets trigered automatocally..it reacts!!
-                this.setState({
-                    loaded: true,//i set the load for testing purposes, and left it for ur testing purposes ;)
-                    articles: response.articles
-                });
-            });
-    }
     render(){
 
-        const { loaded, articles } = this.state;
-        console.log(articles);
-        if(!loaded){//this is only for testing purpose, we ll change it latter
+        if(!this.props.loaded){//this is only for testing purpose, we ll change it latter
             return(
                 <Container>
                       <Row className="justify-content-md-center">
@@ -42,7 +25,7 @@ export default class extends Component {
             return(
                 <Container>
                     <Row className="justify-content-md-start">
-                        {articles.map( el =>
+                        {this.props.articles.map( el =>
                             <Card style={{ width: 265 }} className="card">
                                 <Card.Img variant="top" src={el.urlToImage} className="card__image"/>
                                 <Container className="card__image_icons">
