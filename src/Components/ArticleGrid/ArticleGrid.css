@@ -5,11 +5,8 @@
     position: relative;
     margin: 10px auto;
     border: 0;
+    overflow: hidden;
  }
-.card__body {
-    margin: 10px 20px 0 0;
-    padding-left: 0;
-}
 .card__body__footer {
     font-size: 0.8em;
     opacity: 0.9;
@@ -25,11 +22,37 @@
 .card__body_category {
     font-size: 0.7em;
     color: #2ec4b6;
-    margin-top: -8px;
+    margin-bottom: 0.5rem;
+}
+.card__body_category:hover {
+    text-decoration: none;
+}
+.card__body_title {
+    font-family: 'Avenir Next Condensed';
+    margin-bottom: 1rem;
+    min-height: 5rem;
+    color: #4A4A4A;
+    transition: color .25s ease;
+    display: block;
+}
+.card__body_title:hover {
+    color: #2ec4b6;
+    text-decoration: none;
 }
 .card__body_author {
     font-size: 0.8em;
     color: #999999;
+    min-height: 2rem;
+}
+.card__body_text {
+    font-family: Georgia, Cambria, Cochin, Times, 'Times New Roman', serif;
+    font-size: 0.875rem;
+}
+.card__image {
+    min-height: 170px;
+    max-height: 200px;
+    height: 100%;
+    width: auto;
 }
 .card__image_icons {
     position: absolute;
