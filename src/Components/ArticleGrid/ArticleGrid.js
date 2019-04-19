@@ -25,7 +25,7 @@ export default class extends Component {
             return(
                 <Container>
                     <Row className="justify-content-md-start">
-                        {this.props.articles.map( (el, index) =>
+                        {this.props.articles.slice(1).map( (el, index) =>
                             <Card style={{ width: 265 }} className="card" key={index}>
                                 <Card.Img variant="top" src={el.urlToImage} className="card__image"/>
                                 <Container className="card__image_icons">
