@@ -10,6 +10,7 @@ import {news, headlines} from './utils/api';
 export default class extends Component {
   state = {
       articles : [],
+      firstPost: '',
       loaded: false,
       category: this.props.category
   }
@@ -20,6 +21,7 @@ export default class extends Component {
         this.setState({
             loaded: true,
             articles: response.articles,
+            firstPost: response.articles[Object.keys(response.articles)[0]],
             category
         });
     });
@@ -30,8 +32,9 @@ export default class extends Component {
         headlines()
         .then(response => {
           this.setState({
-              loaded: true,
-              articles: response.articles,
+            loaded: true,
+            articles: response.articles,
+            firstPost: response.articles[Object.keys(response.articles)[0]]
         })
       })
     } else {
@@ -40,12 +43,12 @@ export default class extends Component {
     }
 
   render() {
-    const { loaded, articles } = this.state;
+    const { loaded, articles, firstPost } = this.state;
     return (
       <div className="App">
           <TopBar menu = {this.props.menu} search = {this.searchNews} />
           <MainHeader category = {this.state.category}/>
-          <ArticleLarge />
+          <ArticleLarge article={firstPost} />
           <ArticleGrid articles = {articles} category = {this.state.category} loaded = {loaded}/>
       </div>
     );
