@@ -53,6 +53,11 @@
     max-height: 200px;
     height: 100%;
     width: auto;
+    transition: all .3s ease-in-out;
+    
+}
+.card__image_link:hover .card__image {
+    transform: scale(1.1);
 }
 .card__image_icons {
     position: absolute;

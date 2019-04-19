@@ -27,10 +27,10 @@ export default class extends Component {
                     <Row className="justify-content-md-start">
                         {this.props.articles.slice(1).map( (el, index) =>
                             <Card style={{ width: 265 }} className="card  shadow" key={index}>
-                            <a href={el.url} target="_blank" rel="noopener noreferrer">
+                            <a href={el.url} target="_blank" className="card__image_link" rel="noopener noreferrer">
                                 <Card.Img variant="top" src={el.urlToImage} className="card__image"/>
                             </a>
-                                <Container className="card__image_icons">
+                                <div className="card__image_icons">
                                     <Row>
                                         <FaPlus className="card__image_icons--icon card__image_icons--icon-plus"/>
                                     </Row>
@@ -40,7 +40,7 @@ export default class extends Component {
                                     <Row>
                                         <MdLocalPostOffice className="card__image_icons--icon card__image_icons--icon-letter"/>
                                     </Row>
-                                </Container>
+                                </div>
                                     <Card.Body className="card__body">
                                         <Link to={`/${category}`} className="card__body_category  text-uppercase">{category}</Link>
                                         <a href={el.url} className="card__body_title" target="_blank" rel="noopener noreferrer">
