@@ -5,10 +5,13 @@ import './ArticleLarge.css';
 export default class extends Component {
   render(){
     const featuredPost = this.props.article;
-    console.log(featuredPost);
+    const jumbotronStyle = {
+      backgroundImage: 'url(' + featuredPost.urlToImage + ')',
+    }
+    // console.log(featuredPost.source);
       return(
         <Container>
-          <Jumbotron>
+          <Jumbotron style={jumbotronStyle}>
             <div className="overlay"></div>
             <div className="post">
               <div className="post__info">
@@ -18,7 +21,7 @@ export default class extends Component {
                 </Row>
               </div>
               <h2 className="post__title">{featuredPost.title}</h2>
-              <p className="post__author">{featuredPost.author}</p>
+              <p className="post__author">{featuredPost.author != null ? featuredPost.author : 'John Doe'}</p>
               <Button variant="link">Add comment</Button>
             </div>
         </Jumbotron>

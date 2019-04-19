@@ -1,5 +1,4 @@
 .jumbotron {
-  border-radius: 0;
   position: relative;
   min-height: 300px;
   background: url('article-large-example.jpg') center no-repeat #4a4a4a;
@@ -34,10 +33,14 @@
     height: 100%;
     background-color: #4a4a4a;
     opacity: 0.6;
+    border-radius: 4px;
   }
 
 @media screen and (min-width: 992px) {
   .jumbotron {
     height: 380px;
+  }
+  .post__title {
+    max-width: 70%;
   }
 }
