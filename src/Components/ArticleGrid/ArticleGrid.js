@@ -12,15 +12,6 @@ import './ArticleGrid.css';
 export default class extends Component {
 
     render(){
-        if(!this.props.loaded){//this is only for testing purpose, we ll change it latter
-            return(
-                <Container>
-                      <Row className="justify-content-md-center">
-                            <div className="loading">LOADING!</div>
-                      </Row>
-                </Container>
-            )
-        }else{
             const category = this.props.category;
             return(
                 <Container>
@@ -56,6 +47,4 @@ export default class extends Component {
 
             )
         }
-
-    }
 }

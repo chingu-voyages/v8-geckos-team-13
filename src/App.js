@@ -16,6 +16,7 @@ export default class extends Component {
   }
 
   searchNews = (input, category = this.state.category) => {
+    this.setState({ loaded: false, category });
     news(input)
     .then(response => {
         this.setState({
@@ -44,12 +45,20 @@ export default class extends Component {
 
   render() {
     const { loaded, articles, firstPost } = this.state;
+    const loading =
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>;
+    const articlesBox =
+    <div>
+    <ArticleLarge article={firstPost} />
+    <ArticleGrid articles = {articles} category = {this.state.category} loaded = {loaded}/>;
+    </div>;
+    const articlesLoaded = loaded === true ? articlesBox : loading;
+
     return (
       <div className="App">
           <TopBar menu = {this.props.menu} search = {this.searchNews} />
           <MainHeader category = {this.state.category}/>
-          <ArticleLarge article={firstPost} />
-          <ArticleGrid articles = {articles} category = {this.state.category} loaded = {loaded}/>
+          {articlesLoaded}
       </div>
     );
   }
