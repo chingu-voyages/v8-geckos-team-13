@@ -1,10 +1,18 @@
 .jumbotron {
-  border-radius: 0;
   position: relative;
   min-height: 300px;
   background: url('article-large-example.jpg') center no-repeat #4a4a4a;
   background-size: cover;
 }
+  .jumbotron a {
+    position: absolute;
+    z-index: 30;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+  }
   .post {
     position: absolute;
     z-index: 50;
@@ -16,7 +24,7 @@
   }
   .post__title {
     font-family: 'Merriweather', sans-serif;
-    font-size: 2.25rem;
+    font-size: 2rem;
     line-height: 1.14;
     letter-spacing: 0.4px;
   }
@@ -34,10 +42,19 @@
     height: 100%;
     background-color: #4a4a4a;
     opacity: 0.6;
+    border-radius: 4px;
   }
 
+@media screen and (min-width: 375px) {
+  .post__title {
+    font-size: 2.25rem;
+  }
+}
 @media screen and (min-width: 992px) {
   .jumbotron {
     height: 380px;
+  }
+  .post__title {
+    max-width: 70%;
   }
 }
