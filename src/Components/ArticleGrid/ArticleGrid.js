@@ -12,15 +12,6 @@ import './ArticleGrid.css';
 export default class extends Component {
 
     render(){
-        if(!this.props.loaded){//this is only for testing purpose, we ll change it latter
-            return(
-                <Container>
-                      <Row className="justify-content-md-center">
-                            <div className="loading">LOADING!</div>
-                      </Row>
-                </Container>
-            )
-        }else{
             const category = this.props.category;
             return(
                 <Container>
@@ -32,12 +23,6 @@ export default class extends Component {
                             </a>
                                 <div className="card__image_icons">
                                     <Row>
-                                        <FaPlus className="card__image_icons--icon card__image_icons--icon-plus"/>
-                                    </Row>
-                                    <Row>
-                                        <FaHeart className="card__image_icons--icon card__image_icons--icon-heart"/>
-                                    </Row>
-                                    <Row>
                                         <MdLocalPostOffice className="card__image_icons--icon card__image_icons--icon-letter"/>
                                     </Row>
                                 </div>
@@ -47,7 +32,7 @@ export default class extends Component {
                                             <Card.Title>{el.title}</Card.Title>
                                         </a>
                                         <Card.Subtitle className="card__body_author">{el.author}</Card.Subtitle>
-                                        <Card.Text className="card__body_text">{el.content}</Card.Text>
+                                        <Card.Text className="card__body_text">{el.content = el.content !== null ? el.content : el.description}</Card.Text>
                                     </Card.Body>
                             </Card>
                         )}
@@ -56,6 +41,4 @@ export default class extends Component {
 
             )
         }
-
-    }
 }
