@@ -82,6 +82,12 @@
 .card__image_icons--icon-heart, .card__image_icons--icon-letter {
     background-color: rgba(255, 255, 255, 0.5);
 }
+
+.card__body_source {
+  font-size: 0.9rem;
+  margin: 0.4rem 0rem;
+}
+
 .loading {
     font-size: 2em;
 }

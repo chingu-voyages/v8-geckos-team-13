@@ -24,7 +24,9 @@ export default class extends Component {
                                         <MdLocalPostOffice className="card__image_icons--icon card__image_icons--icon-letter" onClick = {() => this.props.share(el.url)}/>
                                     </Row>
                                 </div>
+
                                     <Card.Body className="card__body">
+                                        <Card.Subtitle className = "card__body_source">{el.source.name}</Card.Subtitle>
                                         <Link to={`/${category}`} className="card__body_category  text-uppercase">{category}</Link>
                                         <a href={el.url} className="card__body_title" target="_blank" rel="noopener noreferrer">
                                             <Card.Title>{el.title}</Card.Title>
