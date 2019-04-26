@@ -3,14 +3,12 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Card, Container, Row} from 'react-bootstrap';
-import {FaHeart, FaPlus } from 'react-icons/fa';
 import { MdLocalPostOffice } from "react-icons/md";
 import './ArticleGrid.css';
 
 
 
 export default class extends Component {
-
     render(){
             const category = this.props.category;
             return(
@@ -23,7 +21,7 @@ export default class extends Component {
                             </a>
                                 <div className="card__image_icons">
                                     <Row>
-                                        <MdLocalPostOffice className="card__image_icons--icon card__image_icons--icon-letter"/>
+                                        <MdLocalPostOffice className="card__image_icons--icon card__image_icons--icon-letter" onClick = {() => this.props.share(el.url)}/>
                                     </Row>
                                 </div>
                                     <Card.Body className="card__body">
@@ -32,7 +30,7 @@ export default class extends Component {
                                             <Card.Title>{el.title}</Card.Title>
                                         </a>
                                         <Card.Subtitle className="card__body_author">{el.author}</Card.Subtitle>
-                                        <Card.Text className="card__body_text">{el.content = el.content !== null ? el.content : el.description}</Card.Text>
+                                        <Card.Text className="card__body_text">{el.description = el.description ? el.description : el.content}</Card.Text>
                                     </Card.Body>
                             </Card>
                         )}
