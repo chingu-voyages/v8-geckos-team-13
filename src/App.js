@@ -5,6 +5,7 @@ import TopBar from './Components/TopBar/TopBar';
 import MainHeader from './Components/MainHeader/MainHeader';
 import ArticleLarge from './Components/ArticleLarge/ArticleLarge';
 import ArticleGrid from './Components/ArticleGrid/ArticleGrid';
+import ShareBox from './Components/ShareBox/ShareBox';
 import {news, headlines} from './utils/api';
 
 export default class extends Component {
@@ -12,7 +13,9 @@ export default class extends Component {
       articles : [],
       firstPost: '',
       loaded: false,
-      category: this.props.category
+      category: this.props.category,
+      shareActive: false,
+      shareUrl: '',
   }
 
   searchNews = (input, category = this.state.category) => {
@@ -26,6 +29,14 @@ export default class extends Component {
             category
         });
     });
+  }
+
+  share = (url) => {
+    this.setState({ shareActive: true, shareUrl: url})
+  }
+
+  closeShare = () => {
+    this.setState({ shareActive: false, shareUrl: '' })
   }
 
   componentDidMount() {
@@ -45,17 +56,21 @@ export default class extends Component {
 
   render() {
     const { loaded, articles, firstPost } = this.state;
+
     const loading =
-    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>;
+    <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>;
+
     const articlesBox =
     <div>
-    <ArticleLarge article={firstPost} />
-    <ArticleGrid articles = {articles} category = {this.state.category} loaded = {loaded}/>;
+    <ArticleLarge article={firstPost} share = {this.share} />
+    <ArticleGrid articles = {articles} category = {this.state.category} share = {this.share}/>;
     </div>;
+
     const articlesLoaded = loaded === true ? articlesBox : loading;
 
     return (
       <div className="App">
+          <ShareBox show = {this.state.shareActive} close = {this.closeShare} url = {this.state.shareUrl} />
           <TopBar menu = {this.props.menu} search = {this.searchNews} />
           <MainHeader category = {this.state.category}/>
           {articlesLoaded}

@@ -45,9 +45,25 @@
     border-radius: 4px;
   }
 
+#icon_large {
+  z-index: 100;
+  font-size: 2.5rem;
+  left: 95%;
+}
+
 @media screen and (min-width: 375px) {
   .post__title {
     font-size: 2.25rem;
+  }
+}
+@media screen and (max-width: 992px) {
+  #icon_large {
+    left: 93%;
+  }
+}
+@media screen and (max-width: 767px) {
+  #icon_large {
+    left: 88%;
   }
 }
 @media screen and (min-width: 992px) {
