@@ -62,7 +62,7 @@ export default class extends Component {
 
     const articlesBox =
     <div>
-    <ArticleLarge article={firstPost} />
+    <ArticleLarge article={firstPost} share = {this.share} />
     <ArticleGrid articles = {articles} category = {this.state.category} share = {this.share}/>;
     </div>;
 
