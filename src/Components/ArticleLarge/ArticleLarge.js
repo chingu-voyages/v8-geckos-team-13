@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {Container, Jumbotron} from 'react-bootstrap';
+import {Row, Container, Jumbotron} from 'react-bootstrap';
+import { MdLocalPostOffice } from "react-icons/md";
+
 import './ArticleLarge.css';
 
 export default class extends Component {
@@ -14,11 +16,16 @@ export default class extends Component {
     const postSource = featuredPost && featuredPost.source ? featuredPost.source.name : null;
     // Display a default author name
     const postAuthor = featuredPost.author != null ? featuredPost.author : 'John Doe';
-    
+
       return(
         <Container>
           <Jumbotron style={jumbotronStyle}>
             <div className="overlay"></div>
+            <div className="card__image_icons" id = "icon_large" >
+                <Row>
+                    <MdLocalPostOffice className="card__image_icons--icon card__image_icons--icon-letter" onClick = {() => this.props.share(featuredPost.url)}/>
+                </Row>
+            </div>
             <a href={featuredPost.url} target="_blank" rel="noopener noreferrer" title="Read full article">
               <div className="post">
                 <p className="post__info  text-uppercase">{postSource}</p>
@@ -28,6 +35,6 @@ export default class extends Component {
             </a>
         </Jumbotron>
       </Container>
-      )  
+      )
   }
 }

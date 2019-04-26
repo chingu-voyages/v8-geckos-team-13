@@ -55,7 +55,7 @@
     height: 100%;
     width: auto;
     transition: all .3s ease-in-out;
-    
+
 }
 .card__image_link:hover .card__image {
     transform: scale(1.1);
@@ -63,12 +63,12 @@
 .card__image_icons {
     position: absolute;
     top: 10px;
+    left: 90%;
     font-size: 1.6em;
     color: #2ec4b6;
 }
 .card__image_icons--icon  {
     position: relative;
-    left: 230px;
     border: 1px solid #2ec4b6;
     padding: 5px;
     border-radius: 50%;
@@ -82,9 +82,16 @@
 .card__image_icons--icon-heart, .card__image_icons--icon-letter {
     background-color: rgba(255, 255, 255, 0.5);
 }
+
+.card__body_source {
+  font-size: 0.9rem;
+  margin: 0.4rem 0rem;
+}
+
 .loading {
     font-size: 2em;
 }
+
 @media screen and (min-width: 768px) {
     .card {
         max-width: 45%;
