@@ -30,7 +30,7 @@ export default class extends Component {
                                             <Card.Title>{el.title}</Card.Title>
                                         </a>
                                         <Card.Subtitle className="card__body_author">{el.author}</Card.Subtitle>
-                                        <Card.Text className="card__body_text">{el.description = el.description ? el.description : el.content}</Card.Text>
+                                        <Card.Text className="card__body_text">{el.content = el.content ? el.content : el.description}</Card.Text>
                                     </Card.Body>
                             </Card>
                         )}
