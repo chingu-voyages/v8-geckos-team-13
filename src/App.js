@@ -46,7 +46,7 @@ export default class extends Component {
   render() {
     const { loaded, articles, firstPost } = this.state;
     const loading =
-    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>;
+    <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>;
     const articlesBox =
     <div>
     <ArticleLarge article={firstPost} />
