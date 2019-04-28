@@ -11,10 +11,12 @@ import './ArticleGrid.css';
 export default class extends Component {
     render(){
             const category = this.props.category;
+            const posts = this.props.articles;
+            const limit = 230;
             return(
                 <Container>
                     <Row className="justify-content-md-start">
-                        {this.props.articles.slice(1).map( (el, index) =>
+                        {posts.slice(1).map( (el, index) =>
                             <Card className="card  shadow" key={index}>
                             <a href={el.url} target="_blank" className="card__image_link" rel="noopener noreferrer">
                                 <Card.Img variant="top" src={el.urlToImage} className="card__image"/>
@@ -32,13 +34,13 @@ export default class extends Component {
                                             <Card.Title>{el.title}</Card.Title>
                                         </a>
                                         <Card.Subtitle className="card__body_author">{el.author}</Card.Subtitle>
-                                        <Card.Text className="card__body_text">{el.content = el.content ? el.content : el.description}</Card.Text>
+                                        <Card.Text className="card__body_text">{el.content = el.content ? el.content.substring(0, limit) + '...' : el.description}</Card.Text>
                                     </Card.Body>
                             </Card>
                         )}
                     </Row>
                 </Container>
 
-            )
-        }
+        )
+    }
 }
