@@ -1,6 +1,7 @@
 //this folders purpose is only to import and render the App component
 import React from 'react';
 import {render} from 'react-dom';//i use destructuring whenever i can- if it confuses you just use the syntax u are comfortable with
+import qs from 'query-string';
 import 'bootstrap/dist/css/bootstrap.css';
 import './fonts.css';
 import './index.css';
@@ -17,6 +18,7 @@ const options = menu.slice(1).map(route => {
     render={(props) => <App {...props} category = {route} menu = {menu} />}
   />
 })
+const query = qs.parse(window.location.search);
 const routing = (
   <Router>
     <>
@@ -24,6 +26,8 @@ const routing = (
       <Route exact path = "(/|/featured)"
       render={(props) => <App {...props} category = "featured" menu = {menu}/>} />
       {options}
+      <Route exact path = "/search"
+      render={(props) => <App {...props} category = "search" menu = {menu} query = {query.q}/>} />
       <Route component = {error}/>
       </Switch>
     </>
