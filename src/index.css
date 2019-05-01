@@ -13,8 +13,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 .App {
   margin: auto;
+}
+
+#root {
+  min-height: 100%;
+  height: 100%;
 }
 
 .lds-roller {
