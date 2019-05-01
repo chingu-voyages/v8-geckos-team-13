@@ -25,6 +25,7 @@ export default class extends Component {
         this.setState({
             loaded: true,
             articles: response.articles,
+            articleNumber: response.totalResults,
             firstPost: response.articles[Object.keys(response.articles)[0]],
             category
         });
@@ -68,7 +69,14 @@ export default class extends Component {
     <ArticleGrid articles = {articles} category = {this.state.category} share = {this.share}/>;
     </div>;
 
-    const articlesLoaded = loaded === true ? articlesBox : loading;
+    const badSearch =
+    <div className = "bad-search">
+    <h1>Sorry no results found.</h1>
+    </div>
+
+    const articleSuccess = this.state.articleNumber !== 0 ? articlesBox : badSearch;
+
+    const articlesLoaded = loaded === true ? articleSuccess : loading;
 
     return (
       <div className="App">

@@ -18,6 +18,10 @@ code {
   margin: auto;
 }
 
+.bad-search {
+  text-align: center;
+}
+
 #root {
   min-height: 100%;
   height: 100%;
