@@ -15,7 +15,7 @@ class TopBarSearch extends Component {
     handleSubmit = (e) => {
       e.preventDefault();
       const search = this.state.input;
-      if (search === "") {
+      if (!search) {
         return;
       }
       this.props.history.push(`/search?q=${search}`);
