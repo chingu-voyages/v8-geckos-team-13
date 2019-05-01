@@ -25,7 +25,6 @@ export default class extends Component {
         this.setState({
             loaded: true,
             articles: response.articles,
-            articleNumber: response.totalResults,
             firstPost: response.articles[Object.keys(response.articles)[0]],
             category
         });
@@ -63,15 +62,17 @@ export default class extends Component {
       }
     }
 
-  componentDidUpdate(prevProps, prevState) {
-    const newQuery = qs.parse(this.props.location.search).q
-    const pathName = this.props.location.pathname;
-    if (pathName === '/search' && prevState.query !== newQuery) {
-      this.setState({ query: newQuery })
-      this.searchNews(newQuery);
-    };
-    return;
-  }
+// componentDidUpdate can be used to re-fetch the news data when the search query changes (a change in search query by itself doesn't cause the component to reload with the new query), but it's also possible to retrigger the route by changing the component key every time a new search is made (see index.js)
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   const newQuery = qs.parse(this.props.location.search).q
+  //   const pathName = this.props.location.pathname;
+  //   if (pathName === '/search' && prevState.query !== newQuery) {
+  //     this.setState({ query: newQuery })
+  //     this.searchNews(newQuery);
+  //   };
+  //   return;
+  // }
 
   render() {
     const { loaded, articles, firstPost } = this.state;
@@ -90,7 +91,7 @@ export default class extends Component {
     <h3>Sorry no results found.</h3>
     </div>
 
-    const articleSuccess = this.state.articleNumber !== 0 ? articlesBox : badSearch;
+    const articleSuccess = this.state.articles.length !== 0 ? articlesBox : badSearch;
 
     const articlesLoaded = loaded === true ? articleSuccess : loading;
 
