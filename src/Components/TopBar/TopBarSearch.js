@@ -12,15 +12,6 @@ class TopBarSearch extends Component {
       this.setState({input: e.target.value})
     }
 
-    // handleSubmit = (e) => {
-    //   e.preventDefault();
-    //   if (this.state.input === "") {
-    //     return;
-    //   }
-    //   this.props.search(this.state.input, "search");
-    //   this.setState({input: ""});
-    // }
-
     handleSubmit = (e) => {
       e.preventDefault();
       const search = this.state.input;
