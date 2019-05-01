@@ -100,3 +100,6 @@ code {
     transform: rotate(360deg);
   }
 }
+.infinite-scroll-component {
+  overflow: hidden !important; 
+}

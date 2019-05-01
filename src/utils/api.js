@@ -9,13 +9,15 @@ const news = (input) => { return newsapi.v2.everything({
    sources,
    language: 'en',
    sortBy: 'relevancy',
-   page: 2
+   page: 2,
+   pageSize: 50
   })
 };
 
 const headlines = () => { return newsapi.v2.topHeadlines({
   sources,
   language: 'en',
+  pageSize: 50
   })
 };
 
