@@ -8,12 +8,12 @@ export default class extends Component {
     }
 
     handleChange = (e) => {
-      this.setState({input: e.target.value})
+       this.setState({ input: e.target.value })
     }
 
     handleSubmit = (e) => {
       e.preventDefault();
-      if (this.state.input === "") {
+      if ( !this.state.input ) {
         return;
       }
       this.props.search(this.state.input, "search");
@@ -26,7 +26,7 @@ export default class extends Component {
               <FormControl type="text" name = "search"
               value = {this.state.input}
               onChange = {this.handleChange}
-              placeholder="Search" id = "search-input"   />
+              placeholder="Search" id = "search-input"/>
               <Button type = "submit" variant="link"><img src = {search} alt = "Search" /></Button>
             </Form>
         )

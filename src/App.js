@@ -22,6 +22,7 @@ export default class extends Component {
     this.setState({ loaded: false, category });
     news(input)
     .then(response => {
+       if( !response.totalResults ) return;
         this.setState({
             loaded: true,
             articles: response.articles,
