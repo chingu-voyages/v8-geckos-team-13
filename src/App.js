@@ -1,5 +1,3 @@
-//App component is our main container,ie. all components will be imported here
-
 import React, { Component } from 'react';
 import TopBar from './Components/TopBar/TopBar';
 import MainHeader from './Components/MainHeader/MainHeader';
@@ -7,6 +5,7 @@ import ArticleLarge from './Components/ArticleLarge/ArticleLarge';
 import ArticleGrid from './Components/ArticleGrid/ArticleGrid';
 import ShareBox from './Components/ShareBox/ShareBox';
 import {news, headlines} from './utils/api';
+import qs from "query-string";
 
 export default class extends Component {
   state = {
@@ -16,6 +15,7 @@ export default class extends Component {
       category: this.props.category,
       shareActive: false,
       shareUrl: '',
+      query: qs.parse(this.props.location.search).q
   }
 
   searchNews = (input, category = this.state.category) => {
@@ -32,6 +32,17 @@ export default class extends Component {
     });
   }
 
+  getHeadlines = () => {
+    headlines()
+    .then(response => {
+      this.setState({
+        loaded: true,
+        articles: response.articles,
+        firstPost: response.articles[Object.keys(response.articles)[0]]
+      })
+    })
+  }
+
   share = (url) => {
     this.setState({ shareActive: true, shareUrl: url})
   }
@@ -42,20 +53,25 @@ export default class extends Component {
 
   componentDidMount() {
       if (this.state.category === "featured") {
-        headlines()
-        .then(response => {
-          this.setState({
-            loaded: true,
-            articles: response.articles,
-            firstPost: response.articles[Object.keys(response.articles)[0]]
-        })
-      })
-      } else if (this.props.query) {
-        this.searchNews(this.props.query)
+        this.getHeadlines();
+      } else if (this.state.category === "search" && this.state.query) {
+        this.searchNews(this.state.query)
+      } else if (this.state.category === "search") {
+        this.getHeadlines();
       } else {
         this.searchNews(this.state.category)
       }
     }
+
+  componentDidUpdate(prevProps, prevState) {
+    const newQuery = qs.parse(this.props.location.search).q
+    const pathName = this.props.location.pathname;
+    if (pathName === '/search' && prevState.query !== newQuery) {
+      this.setState({ query: newQuery })
+      this.searchNews(newQuery);
+    };
+    return;
+  }
 
   render() {
     const { loaded, articles, firstPost } = this.state;
@@ -71,7 +87,7 @@ export default class extends Component {
 
     const badSearch =
     <div className = "bad-search">
-    <h1>Sorry no results found.</h1>
+    <h3>Sorry no results found.</h3>
     </div>
 
     const articleSuccess = this.state.articleNumber !== 0 ? articlesBox : badSearch;
@@ -81,7 +97,7 @@ export default class extends Component {
     return (
       <div className="App">
           <ShareBox show = {this.state.shareActive} close = {this.closeShare} url = {this.state.shareUrl} />
-          <TopBar menu = {this.props.menu} search = {this.searchNews} />
+          <TopBar menu = {this.props.menu}/>
           <MainHeader category = {this.state.category}/>
           {articlesLoaded}
       </div>
