@@ -30,7 +30,7 @@ const routing = (
       <Route
       exact path = "/search"
       key = "search"
-      render={(props) => <App {...props} category = "search" menu = {menu}/>}
+      render={(props) => <App {...props} key = {window.location.search} category = "search" menu = {menu}/>} // the change in search query changes the key, causing a reload of the route
       />
       <Route component = {error}/>
       </Switch>
