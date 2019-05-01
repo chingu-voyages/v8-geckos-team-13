@@ -4,25 +4,29 @@ import {render} from 'react-dom';//i use destructuring whenever i can- if it con
 import 'bootstrap/dist/css/bootstrap.css';
 import './fonts.css';
 import './index.css';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import App from './App';
+import error from './Components/Error/Error';
 
 
 const menu = ['featured', 'technology', 'news', 'entertainment', 'design', 'health'];
 const options = menu.slice(1).map(route => {
   return <Route
-    path = {`/${route}`}
+    exact path = {`/${route}`}
     key = {route}
     render={(props) => <App {...props} category = {route} menu = {menu} />}
   />
 })
 const routing = (
   <Router>
-    <div>
+    <>
+      <Switch>
       <Route exact path = "(/|/featured)"
       render={(props) => <App {...props} category = "featured" menu = {menu}/>} />
       {options}
-    </div>
+      <Route component = {error}/>
+      </Switch>
+    </>
   </Router>
 )
 
