@@ -49,7 +49,9 @@ export default class extends Component {
             firstPost: response.articles[Object.keys(response.articles)[0]]
         })
       })
-    } else {
+      } else if (this.props.query) {
+        this.searchNews(this.props.query)
+      } else {
         this.searchNews(this.state.category)
       }
     }
