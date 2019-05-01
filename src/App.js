@@ -7,6 +7,7 @@ import ArticleLarge from './Components/ArticleLarge/ArticleLarge';
 import ArticleGrid from './Components/ArticleGrid/ArticleGrid';
 import ShareBox from './Components/ShareBox/ShareBox';
 import {news, headlines} from './utils/api';
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default class extends Component {
   state = {
@@ -54,6 +55,21 @@ export default class extends Component {
       }
     }
 
+    fetchMoreData = () => {
+      console.log(this.state.articles)
+      // a fake async api call like which sends
+      // 20 more records in 1.5 secs
+      setTimeout(() => {
+        headlines()
+        .then(response => {
+         
+          this.setState({
+            articles: this.state.articles.concat(response.articles),
+          })
+        })
+      }, 2000);
+    };
+
   render() {
     const { loaded, articles, firstPost } = this.state;
 
@@ -73,7 +89,15 @@ export default class extends Component {
           <ShareBox show = {this.state.shareActive} close = {this.closeShare} url = {this.state.shareUrl} />
           <TopBar menu = {this.props.menu} search = {this.searchNews} />
           <MainHeader category = {this.state.category}/>
-          {articlesLoaded}
+          
+          <InfiniteScroll
+           dataLength = {this.state.articles.length}
+           next = {this.fetchMoreData}
+           hasMore = {true}
+           loader= {<h4>Loading...</h4>}
+          >
+               {articlesLoaded}
+          </InfiniteScroll>
       </div>
     );
   }
