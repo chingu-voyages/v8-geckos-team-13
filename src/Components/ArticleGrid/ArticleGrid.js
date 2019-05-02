@@ -16,7 +16,7 @@ export default class extends Component {
             return(
                 <Container>
                     <Row className="justify-content-md-start">
-                        {posts.slice(1).map( (el, index) =>
+                        {posts.map( (el, index) =>
                             <Card className="card  shadow" key={index}>
                             <a href={el.url} target="_blank" className="card__image_link" rel="noopener noreferrer">
                                 <Card.Img variant="top" src={el.urlToImage} className="card__image"/>

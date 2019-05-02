@@ -5,16 +5,19 @@ import ArticleLarge from './Components/ArticleLarge/ArticleLarge';
 import ArticleGrid from './Components/ArticleGrid/ArticleGrid';
 import ShareBox from './Components/ShareBox/ShareBox';
 import {news, headlines} from './utils/api';
+import InfiniteScroll from "react-infinite-scroll-component";
 import qs from "query-string";
 
 export default class extends Component {
   state = {
-      articles : [],
+      articles : [],//render this only
+      remainingArticles: [],//load remaining articles on infinite scroll (limited to 100)
       firstPost: '',
       loaded: false,
       category: this.props.category,
       shareActive: false,
       shareUrl: '',
+      hasMore: true,
       query: qs.parse(this.props.location.search).q
   }
 
@@ -24,7 +27,8 @@ export default class extends Component {
     .then(response => {
         this.setState({
             loaded: true,
-            articles: response.articles,
+            articles: response.articles.slice(1, 21),
+            remainingArticles: response.articles.slice(21),
             firstPost: response.articles[Object.keys(response.articles)[0]],
             category
         });
@@ -36,7 +40,8 @@ export default class extends Component {
     .then(response => {
       this.setState({
         loaded: true,
-        articles: response.articles,
+        articles: response.articles.slice(1, 21),
+        remainingArticles: response.articles.slice(21),
         firstPost: response.articles[Object.keys(response.articles)[0]]
       })
     })
@@ -47,8 +52,21 @@ export default class extends Component {
   }
 
   closeShare = () => {
-    this.setState({ shareActive: false, shareUrl: '' })
+    this.setState({ shareActive: false, shareUrl: '' });
   }
+
+  loadMoreArticles = () => {
+      if (this.state.remainingArticles.length) {
+        setTimeout(() => {
+          this.setState(prevState => ({
+            articles: prevState.articles.concat(prevState.remainingArticles.slice(0, 8)),
+            remainingArticles: prevState.remainingArticles.slice(9)
+          }))
+        }, 1000)
+      } else {
+        this.setState({hasMore: false})
+      }
+    };
 
   componentDidMount() {
       if (this.state.category === "featured") {
@@ -74,6 +92,7 @@ export default class extends Component {
   //   return;
   // }
 
+
   render() {
     const { loaded, articles, firstPost } = this.state;
 
@@ -83,7 +102,7 @@ export default class extends Component {
     const articlesBox =
     <div>
     <ArticleLarge article={firstPost} share = {this.share} />
-    <ArticleGrid articles = {articles} category = {this.state.category} share = {this.share}/>;
+    <ArticleGrid articles = {articles} category = {this.state.category} share = {this.share}/>
     </div>;
 
     const badSearch =
@@ -93,14 +112,22 @@ export default class extends Component {
 
     const articleSuccess = this.state.articles.length !== 0 ? articlesBox : badSearch;
 
-    const articlesLoaded = loaded === true ? articleSuccess : loading;
+    const articlesLoaded = loaded === true ? articleSuccess : "";
 
     return (
       <div className="App">
           <ShareBox show = {this.state.shareActive} close = {this.closeShare} url = {this.state.shareUrl} />
           <TopBar menu = {this.props.menu}/>
           <MainHeader category = {this.state.category}/>
-          {articlesLoaded}
+
+          <InfiniteScroll
+           dataLength = {this.state.articles.length}
+           next = {this.loadMoreArticles}
+           hasMore = {this.state.hasMore}
+           loader= {loading}
+          >
+            {articlesLoaded}
+          </InfiniteScroll>
       </div>
     );
   }
