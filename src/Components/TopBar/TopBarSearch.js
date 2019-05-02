@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Form, Button, FormControl } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
 import search from './icon-search.svg';
 
-export default class extends Component {
+class TopBarSearch extends Component {
     state = {
       input: ""
     }
@@ -13,10 +14,11 @@ export default class extends Component {
 
     handleSubmit = (e) => {
       e.preventDefault();
-      if (this.state.input === "") {
+      const search = this.state.input;
+      if (!search) {
         return;
       }
-      this.props.search(this.state.input, "search");
+      this.props.history.push(`/search?q=${search}`);
       this.setState({input: ""});
     }
 
@@ -32,3 +34,5 @@ export default class extends Component {
         )
     }
 }
+
+export default withRouter(TopBarSearch);
