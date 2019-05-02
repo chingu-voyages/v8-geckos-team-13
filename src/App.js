@@ -12,12 +12,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 export default class extends Component {
   state = {
       articles : [],//render this only
-      remainingArticles: [],//load remaining articles on infinite scroll (limited to fifty)
+      remainingArticles: [],//load remaining articles on infinite scroll (limited to 100)
       firstPost: '',
       loaded: false,
       category: this.props.category,
       shareActive: false,
       shareUrl: '',
+      hasMore: true,
   }
 
   searchNews = (input, category = this.state.category) => {
@@ -26,7 +27,7 @@ export default class extends Component {
     .then(response => {
         this.setState({
             loaded: true,
-            articles: response.articles.slice(0, 20),
+            articles: response.articles.slice(1, 21),
             remainingArticles: response.articles.slice(21),
             firstPost: response.articles[Object.keys(response.articles)[0]],
             category
@@ -48,8 +49,8 @@ export default class extends Component {
         .then(response => {
            this.setState({
             loaded: true,
-            articles: response.articles.slice(0, 20), 
-            remainingArticles: response.articles.slice(21), 
+            articles: response.articles.slice(1, 21),
+            remainingArticles: response.articles.slice(21),
             firstPost: response.articles[Object.keys(response.articles)[0]]
         });
       });
@@ -58,13 +59,17 @@ export default class extends Component {
       }
     }
 
-    fetchMoreData = () => {
-      // 29 more articles in 2 secs
-      setTimeout(() => {
-          this.setState({
-            articles: this.state.articles.concat(this.state.remainingArticles)
-          })
-      }, 2000);
+  loadMoreArticles = () => {
+      if (this.state.remainingArticles.length) {
+        setTimeout(() => {
+          this.setState(prevState => ({
+            articles: prevState.articles.concat(prevState.remainingArticles.slice(0, 8)),
+            remainingArticles: prevState.remainingArticles.slice(9)
+          }))
+        }, 1000)
+      } else {
+        this.setState({hasMore: false})
+      }
     };
 
   render() {
@@ -76,24 +81,24 @@ export default class extends Component {
     const articlesBox =
     <div>
     <ArticleLarge article={firstPost} share = {this.share} />
-    <ArticleGrid articles = {articles} category = {this.state.category} share = {this.share}/>;
+    <ArticleGrid articles = {articles} category = {this.state.category} share = {this.share}/>
     </div>;
 
-    const articlesLoaded = loaded === true ? articlesBox : null;//there is also loading animation from infinite scroll feature, we don't need two xD
+    const articlesLoaded = loaded === true ? articlesBox : null;// we still need this for when the articles initially load, the infinite scroll loader is for subsequent articles
 
     return (
       <div className="App">
           <ShareBox show = {this.state.shareActive} close = {this.closeShare} url = {this.state.shareUrl} />
           <TopBar menu = {this.props.menu} search = {this.searchNews} />
           <MainHeader category = {this.state.category}/>
-          
+
           <InfiniteScroll
            dataLength = {this.state.articles.length}
-           next = {this.fetchMoreData}
-           hasMore = {true}
+           next = {this.loadMoreArticles}
+           hasMore = {this.state.hasMore}
            loader= {loading}
           >
-               {articlesLoaded}
+            {articlesLoaded}
           </InfiniteScroll>
       </div>
     );
