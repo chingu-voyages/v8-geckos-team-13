@@ -16,3 +16,12 @@
     font-family: 'Avenir Next Demi', sans-serif;
     font-size: 0.875rem;
   }
+
+@media only screen and (max-width: 425px) {
+  .main-header__title {
+    font-size: 2.2rem;
+  }
+  .main-header__text {
+    font-size: 0.6rem;
+  }
+}
