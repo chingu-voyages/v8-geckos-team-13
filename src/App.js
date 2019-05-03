@@ -10,8 +10,8 @@ import axios from "axios";
 
 export default class extends Component {
   state = {
-      articles : [],//render this only
-      remainingArticles: [],//load remaining articles on infinite scroll (limited to 100)
+      articles : [],
+      remainingArticles: [],
       firstPost: '',
       loaded: false,
       category: this.props.category,
@@ -81,19 +81,6 @@ export default class extends Component {
         this.searchNews(this.state.category)
       }
     }
-
-// componentDidUpdate can be used to re-fetch the news data when the search query changes (a change in search query by itself doesn't cause the component to reload with the new query), but it's also possible to retrigger the route by changing the component key every time a new search is made (see index.js)
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   const newQuery = qs.parse(this.props.location.search).q
-  //   const pathName = this.props.location.pathname;
-  //   if (pathName === '/search' && prevState.query !== newQuery) {
-  //     this.setState({ query: newQuery })
-  //     this.searchNews(newQuery);
-  //   };
-  //   return;
-  // }
-
 
   render() {
     const { loaded, articles, firstPost } = this.state;
