@@ -51,26 +51,25 @@
   left: 95%;
 }
 
-@media screen and (min-width: 375px) {
-  .post__title {
-    font-size: 2.25rem;
-  }
-}
 @media screen and (max-width: 992px) {
   #icon_large {
     left: 93%;
   }
+  .post__title {
+    max-width: 70%;
+  }
 }
 @media screen and (max-width: 767px) {
+  .post__title {
+    font-size: 2rem;
+  }
   #icon_large {
     left: 88%;
   }
 }
-@media screen and (min-width: 992px) {
-  .jumbotron {
-    height: 380px;
-  }
+
+@media screen and (max-width: 425px) {
   .post__title {
-    max-width: 70%;
+    font-size: 1.3rem;
   }
 }
