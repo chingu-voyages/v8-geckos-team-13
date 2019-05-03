@@ -1,6 +1,5 @@
-//this folders purpose is only to import and render the App component
 import React from 'react';
-import {render} from 'react-dom';//i use destructuring whenever i can- if it confuses you just use the syntax u are comfortable with
+import {render} from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './fonts.css';
 import './index.css';
@@ -19,7 +18,6 @@ const options = menu.map(route => {
 })
 const routing = (
   <Router>
-    <>
       <Switch>
       <Route
       exact path = "/"
@@ -30,11 +28,10 @@ const routing = (
       <Route
       exact path = "/search"
       key = "search"
-      render={(props) => <App {...props} key = {window.location.search} category = "search" menu = {menu}/>} // the change in search query changes the key, causing a reload of the route
+      render={(props) => <App {...props} key = {window.location.search} category = "search" menu = {menu}/>}
       />
       <Route component = {error}/>
       </Switch>
-    </>
   </Router>
 )
 
