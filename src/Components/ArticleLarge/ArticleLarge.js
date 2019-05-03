@@ -6,16 +6,12 @@ import './ArticleLarge.css';
 
 export default class extends Component {
   render(){
-    // Get props from parent component
     const featuredPost = this.props.article;
-    // Get image post for inline style
     const jumbotronStyle = {
       backgroundImage: 'url(' + featuredPost.urlToImage + ')',
     }
-    // Check if source exists before getting the name
     const postSource = featuredPost && featuredPost.source ? featuredPost.source.name : null;
-    // Display a default author name
-    const postAuthor = featuredPost.author != null ? featuredPost.author : 'John Doe';
+    const postAuthor = featuredPost.author ? featuredPost.author : 'John Doe';
 
       return(
         <Container>
