@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {Card, Container, Row} from 'react-bootstrap';
 import { MdLocalPostOffice } from "react-icons/md";
 import './ArticleGrid.css';
+import DefaultImage from '../../img/default-image.jpg';
 
 
 
@@ -19,7 +20,7 @@ export default class extends Component {
                         {posts.map( (el, index) =>
                             <Card className="card  shadow" key={index}>
                             <a href={el.url} target="_blank" className="card__image_link" rel="noopener noreferrer">
-                                <Card.Img variant="top" src={el.urlToImage} className="card__image"/>
+                                <Card.Img variant="top" src={ el.urlToImage ? el.urlToImage : DefaultImage } className="card__image"/>
                             </a>
                                 <div className="card__image_icons">
                                     <Row>

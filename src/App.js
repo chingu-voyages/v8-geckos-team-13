@@ -4,9 +4,9 @@ import MainHeader from './Components/MainHeader/MainHeader';
 import ArticleLarge from './Components/ArticleLarge/ArticleLarge';
 import ArticleGrid from './Components/ArticleGrid/ArticleGrid';
 import ShareBox from './Components/ShareBox/ShareBox';
-import {news, headlines} from './utils/api';
 import InfiniteScroll from "react-infinite-scroll-component";
 import qs from "query-string";
+import axios from "axios";
 
 export default class extends Component {
   state = {
@@ -23,7 +23,8 @@ export default class extends Component {
 
   searchNews = (input, category = this.state.category) => {
     this.setState({ loaded: false, category });
-    news(input)
+    axios(`.netlify/functions/news?q=${input}`)
+    .then(response => response.data)
     .then(response => {
         this.setState({
             loaded: true,
@@ -36,7 +37,8 @@ export default class extends Component {
   }
 
   getHeadlines = () => {
-    headlines()
+    axios('.netlify/functions/news?q=headlines')
+    .then(response => response.data)
     .then(response => {
       this.setState({
         loaded: true,

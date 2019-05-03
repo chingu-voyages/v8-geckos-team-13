@@ -1,7 +1,7 @@
 .jumbotron {
   position: relative;
   min-height: 300px;
-  background: url('article-large-example.jpg') center no-repeat #4a4a4a;
+  background: url('../../img/default-image-large.jpg') center no-repeat #4a4a4a;
   background-size: cover;
 }
   .jumbotron a {
