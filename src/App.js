@@ -71,6 +71,7 @@ export default class extends Component {
     };
 
   componentDidMount() {
+      window.scrollTo(0,0);
       if (this.state.category === "featured") {
         this.getHeadlines();
       } else if (this.state.category === "search" && this.state.query) {
@@ -113,7 +114,7 @@ export default class extends Component {
            dataLength = {this.state.articles.length}
            next = {this.loadMoreArticles}
            hasMore = {this.state.hasMore}
-           loader= {loading}
+           loader = {loading}
           >
             {articlesLoaded}
           </InfiniteScroll>
