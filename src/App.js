@@ -4,14 +4,16 @@ import MainHeader from './Components/MainHeader/MainHeader';
 import ArticleLarge from './Components/ArticleLarge/ArticleLarge';
 import ArticleGrid from './Components/ArticleGrid/ArticleGrid';
 import ShareBox from './Components/ShareBox/ShareBox';
-import InfiniteScroll from "react-infinite-scroll-component";
+import InfiniteScroll from "react-infinite-scroller";
 import qs from "query-string";
 import axios from "axios";
+const CancelToken = axios.CancelToken;
+let cancel;
 
 export default class extends Component {
   state = {
-      articles : [],//render this only
-      remainingArticles: [],//load remaining articles on infinite scroll (limited to 100)
+      articles : [],
+      remainingArticles: [],
       firstPost: '',
       loaded: false,
       category: this.props.category,
@@ -23,7 +25,11 @@ export default class extends Component {
 
   searchNews = (input, category = this.state.category) => {
     this.setState({ loaded: false, category });
-    axios(`.netlify/functions/news?q=${input}`)
+    axios(`.netlify/functions/news?q=${input}`, {
+      cancelToken: new CancelToken(function executor(c) {
+        cancel = c;
+      })
+    })
     .then(response => response.data)
     .then(response => {
         this.setState({
@@ -33,11 +39,18 @@ export default class extends Component {
             firstPost: response.articles[Object.keys(response.articles)[0]],
             category
         });
-    });
+    })
+    .catch((thrown) =>  {
+      return
+    })
   }
 
   getHeadlines = () => {
-    axios('.netlify/functions/news?q=headlines')
+    axios('.netlify/functions/news?q=headlines', {
+      cancelToken: new CancelToken(function executor(c) {
+        cancel = c;
+      })
+    })
     .then(response => response.data)
     .then(response => {
       this.setState({
@@ -47,7 +60,10 @@ export default class extends Component {
         firstPost: response.articles[Object.keys(response.articles)[0]]
       })
     })
-  }
+    .catch((thrown) =>  {
+      return
+    })
+  };
 
   share = (url) => {
     this.setState({ shareActive: true, shareUrl: url})
@@ -57,20 +73,31 @@ export default class extends Component {
     this.setState({ shareActive: false, shareUrl: '' });
   }
 
+  timer = (cb) => {
+    setTimeout(cb, 1000)
+  }
+
   loadMoreArticles = () => {
+      if (!this.state.loaded) return;
       if (this.state.remainingArticles.length) {
-        setTimeout(() => {
+        this.timer(
           this.setState(prevState => ({
             articles: prevState.articles.concat(prevState.remainingArticles.slice(0, 8)),
             remainingArticles: prevState.remainingArticles.slice(9)
           }))
-        }, 1000)
+        )
       } else {
         this.setState({hasMore: false})
       }
     };
 
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+    cancel();
+  }
+
   componentDidMount() {
+      window.scrollTo(0,0)
       if (this.state.category === "featured") {
         this.getHeadlines();
       } else if (this.state.category === "search" && this.state.query) {
@@ -82,24 +109,11 @@ export default class extends Component {
       }
     }
 
-// componentDidUpdate can be used to re-fetch the news data when the search query changes (a change in search query by itself doesn't cause the component to reload with the new query), but it's also possible to retrigger the route by changing the component key every time a new search is made (see index.js)
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   const newQuery = qs.parse(this.props.location.search).q
-  //   const pathName = this.props.location.pathname;
-  //   if (pathName === '/search' && prevState.query !== newQuery) {
-  //     this.setState({ query: newQuery })
-  //     this.searchNews(newQuery);
-  //   };
-  //   return;
-  // }
-
-
   render() {
     const { loaded, articles, firstPost } = this.state;
 
     const loading =
-    <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>;
+    <div className="lds-roller" key = {'loader'}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>;
 
     const articlesBox =
     <div>
@@ -123,10 +137,10 @@ export default class extends Component {
           <MainHeader category = {this.state.category}/>
 
           <InfiniteScroll
-           dataLength = {this.state.articles.length}
-           next = {this.loadMoreArticles}
+           pageStart = {0}
+           loadMore = {this.loadMoreArticles}
            hasMore = {this.state.hasMore}
-           loader= {loading}
+           loader = {loading}
           >
             {articlesLoaded}
           </InfiniteScroll>

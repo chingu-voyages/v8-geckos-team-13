@@ -1,5 +1,3 @@
-//Georgi
-
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Card, Container, Row} from 'react-bootstrap';
@@ -11,13 +9,11 @@ import DefaultImage from '../../img/default-image.jpg';
 
 export default class extends Component {
     render(){
-            const category = this.props.category;
-            const posts = this.props.articles;
-            const limit = 230;
+            const { category, articles } = this.props;
             return(
                 <Container>
                     <Row className="justify-content-md-start">
-                        {posts.map( (el, index) =>
+                        {articles.map( (el, index) =>
                             <Card className="card  shadow" key={index}>
                             <a href={el.url} target="_blank" className="card__image_link" rel="noopener noreferrer">
                                 <Card.Img variant="top" src={ el.urlToImage ? el.urlToImage : DefaultImage } className="card__image"/>
@@ -35,7 +31,7 @@ export default class extends Component {
                                             <Card.Title>{el.title}</Card.Title>
                                         </a>
                                         <Card.Subtitle className="card__body_author">{el.author}</Card.Subtitle>
-                                        <Card.Text className="card__body_text">{el.content = el.content ? el.content.substring(0, limit).trim() + '...' : el.description}</Card.Text>
+                                        <Card.Text className="card__body_text">{el.content = el.content ? el.content.substring(0, 230).trim() + '...' : el.description}</Card.Text>
                                     </Card.Body>
                             </Card>
                         )}

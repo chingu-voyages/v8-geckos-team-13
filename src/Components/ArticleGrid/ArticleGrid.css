@@ -50,10 +50,9 @@
     font-size: 0.875rem;
 }
 .card__image {
-    min-height: 170px;
-    max-height: 200px;
-    height: 100%;
-    width: auto;
+    height: 170px;
+    object-fit: cover;
+    object-position: 0 100%;
     transition: all .3s ease-in-out;
 
 }
@@ -90,6 +89,12 @@
 
 .loading {
     font-size: 2em;
+}
+
+@media screen and (max-width: 425px) {
+  .card__image {
+    height: 170px;
+  }
 }
 
 @media screen and (min-width: 768px) {
