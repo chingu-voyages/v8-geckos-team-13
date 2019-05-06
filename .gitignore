@@ -25,3 +25,4 @@ yarn-error.log*
 config.js
 .env
 /functions
+/.netlify
