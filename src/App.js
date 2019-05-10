@@ -73,19 +73,15 @@ export default class extends Component {
     this.setState({ shareActive: false, shareUrl: '' });
   }
 
-  timer = (cb) => {
-    setTimeout(cb, 1000)
-  }
-
   loadMoreArticles = () => {
       if (!this.state.loaded) return;
       if (this.state.remainingArticles.length) {
-        this.timer(
+        this.timer = setTimeout(() => {
           this.setState(prevState => ({
             articles: prevState.articles.concat(prevState.remainingArticles.slice(0, 8)),
             remainingArticles: prevState.remainingArticles.slice(9)
           }))
-        )
+        }, 1000);
       } else {
         this.setState({hasMore: false})
       }

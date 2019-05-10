@@ -19,6 +19,3 @@ Hosted on Netlify: https://chingu-news.netlify.com
 - Djordjije Matic [@djordjijem](https://github.com/djordjijem)
 - James Grant [@jamsgra](https://github.com/jamsgra)
 - Jennifer Anselme [@janselme](https://github.com/janselme)
-
-  
-  
