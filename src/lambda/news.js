@@ -2,7 +2,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const sources = 'bbc-news,the-verge,the-new-york-times,techradar,reuters,associated-press,techcrunch,wired,fortune,the-economist,the-washington-post,the-wall-street-journal,time,associated-press';
+const sources = 'bbc-news,the-verge,the-new-york-times,techradar,reuters,associated-press,techcrunch,wired,fortune,the-washington-post,the-wall-street-journal,time,associated-press';
 
 const key = process.env.NEWS_KEY;
 
