@@ -39,7 +39,7 @@
     "url": "https://github.com/chingu-voyages/v8-geckos-team-13/issues"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "dotenv": "^8.0.0",
     "netlify-lambda": "^1.4.7",
